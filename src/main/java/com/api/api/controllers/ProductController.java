@@ -15,11 +15,6 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/hello")
-    public String sayHello(){
-        return "Hello";
-    }
-
     @GetMapping("/all")
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
@@ -30,5 +25,19 @@ public class ProductController {
         return productService.createProduct(product);
     }
 
+    @GetMapping("/{id}")
+    public Product getProductById(@PathVariable Long id,@RequestBody Product product){
+        return productService.getProductById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deletedProductById(@PathVariable Long id){
+        return productService.deletedProductById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Product updateProductById(@PathVariable Long id, @RequestBody Product product){
+        return productService.updateProductById(id, product);
+    }
 
 }
